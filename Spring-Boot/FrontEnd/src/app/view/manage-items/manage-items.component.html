@@ -1,3 +1,77 @@
-<p>
-  manage-items works!
-</p>
+<br>
+<br>
+<br>
+<section>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm">
+
+
+        <div class="card border-secondary mb-3 col-6 animated fadeInLeft" style="max-width: 40rem;">
+          <div class="card-header bg-success" style="text-align: center;font-weight: bold;color: white;font-size: 20px;">Items Form</div>
+
+          <div class="card-body">
+
+
+            <form>
+                <div class="form-group">
+                  <label for="iname">Item Name</label>
+                  <input type="text" class="form-control" id="iname" #iname placeholder="Item Name">
+                </div>
+
+                <div class="form-group">
+                  <label for="iDiscription">Item Discription</label>
+                  <textarea type="text" class="form-control" id="iDiscription" #iDiscription placeholder="Item Discription"></textarea>
+                </div>
+
+              <div class="form-group">
+                <label for="qty">Item Qty</label>
+                <input type="text" class="form-control" id="qty" #qty placeholder="Item Qty">
+              </div>
+
+              <div class="form-group">
+                <label for="unitPrice">Item UnitPrice</label>
+                <input type="text" class="form-control" id="unitPrice" #unitPrice placeholder="Item unitPrice">
+              </div>
+
+                <button type="submit" class="btn btn-primary">Save</button>
+              &nbsp;
+              <button type="button" class="btn btn-warning">Clear</button>
+            </form>
+
+
+          </div>
+        </div>
+
+      </div>
+      <!--<div class="col-sm">-->
+      <!--One of three columns-->
+      <!--</div>-->
+      <div class="col-6">
+        <table class="table table-bordered animated fadeInRight table-bordered" id="tblItems">
+          <thead class="black white-text">
+          <tr>
+            <th scope="col">Code</th>
+            <th scope="col">Name</th>
+            <th scope="col">Discription</th>
+            <th scope="col">Qty</th>
+            <th scope="col">UnitPrice</th>
+            <th scope="col">Action</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let i of items">
+            <th>{{i.code}}</th>
+            <td>{{i.iName}}</td>
+            <td>{{i.iDiscription}}</td>
+            <td>{{i.qty}}</td>
+            <td>{{i.unitPrice}}</td>
+            <td><i class="fa fa-trash fa-2x"></i></td>
+          </tr>
+          </tbody>
+        </table>
+
+      </div>
+    </div>
+  </div>
+</section>

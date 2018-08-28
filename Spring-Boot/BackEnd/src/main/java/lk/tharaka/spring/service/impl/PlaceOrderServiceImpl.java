@@ -23,7 +23,6 @@ public class PlaceOrderServiceImpl implements PlaceOrderService {
     private OrderDetailsRepository detailsRepository;
 
     @Override
-    @Transactional(propagation = Propagation.REQUIRED)
     public boolean save(PlaceOrderDTO placeOrderDTO) {
 
         OrdersDTO ordersDTO = placeOrderDTO.getOrdersDTO();
@@ -35,9 +34,9 @@ public class PlaceOrderServiceImpl implements PlaceOrderService {
         customer.setContact(customerDTO.getContact());
 
         Orders orders = new Orders();
-        orders.setCustomer(customer);
         orders.setDate(ordersDTO.getDate());
         orders.setTot(placeOrderDTO.getItemDTO().getUnitPrice());
+        orders.setCustomer(customer);
 
         repository.save(orders);
 

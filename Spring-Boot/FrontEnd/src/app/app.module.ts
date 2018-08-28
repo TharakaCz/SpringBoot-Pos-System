@@ -7,6 +7,12 @@ import { MainComponent } from './view/main/main.component';
 import { ManageCustomerComponent } from './view/manage-customer/manage-customer.component';
 import { ManageItemsComponent } from './view/manage-items/manage-items.component';
 import { ManageOrdersComponent } from './view/manage-orders/manage-orders.component';
+import {HttpClientModule} from "@angular/common/http";
+import {FormsModule} from "@angular/forms";
+import {ItemsService} from "./service/items.service";
+import {RoutingModule} from "./routing/routing.module";
+import {AlertModule} from "ngx-alerts";
+import {CustomerService} from "./service/customer.service";
 
 @NgModule({
   declarations: [
@@ -18,9 +24,16 @@ import { ManageOrdersComponent } from './view/manage-orders/manage-orders.compon
     ManageOrdersComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    HttpClientModule,
+    FormsModule,
+    AlertModule.forRoot({maxMessages:5,timeout:5000}),
+    RoutingModule
   ],
-  providers: [],
+  providers: [
+    ItemsService,
+    CustomerService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
