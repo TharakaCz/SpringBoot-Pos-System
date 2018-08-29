@@ -13,6 +13,9 @@ import {ItemsService} from "./service/items.service";
 import {RoutingModule} from "./routing/routing.module";
 import {AlertModule} from "ngx-alerts";
 import {CustomerService} from "./service/customer.service";
+import {NgxPaginationModule} from "ngx-pagination";
+import {OrdersService} from "./service/orders.service";
+import {PlaceOrderService} from "./service/place-order.service";
 
 @NgModule({
   declarations: [
@@ -28,11 +31,14 @@ import {CustomerService} from "./service/customer.service";
     HttpClientModule,
     FormsModule,
     AlertModule.forRoot({maxMessages:5,timeout:5000}),
-    RoutingModule
+    RoutingModule,
+    NgxPaginationModule
   ],
   providers: [
     ItemsService,
-    CustomerService
+    CustomerService,
+    OrdersService,
+    PlaceOrderService
   ],
   bootstrap: [AppComponent]
 })

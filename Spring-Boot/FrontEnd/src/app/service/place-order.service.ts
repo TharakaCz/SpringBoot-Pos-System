@@ -3,18 +3,15 @@ import {HttpClient} from "@angular/common/http";
 import {PlaceOrder} from "../dto/place-order";
 import {Observable} from "rxjs";
 
-
-export const  MAIN_URL="http://localhost:8080";
+export const MAIN_URL="http://localhost:8080";
 const URL="/api/v1/orders";
 
 @Injectable()
-export class OrdersService {
+export class PlaceOrderService {
 
   constructor(private http:HttpClient) { }
 
-  save(placeorders:PlaceOrder):Observable<boolean>{
-
-    return this.http.post<boolean>(MAIN_URL+URL,placeorders);
+  save(placeorder:PlaceOrder):Observable<boolean>{
+    return this.http.post<boolean>(MAIN_URL+URL,placeorder);
   }
 }
-

@@ -16,4 +16,16 @@ export class ItemsService {
   getAllItems():Observable<Array<Items>>{
     return this.http.get<Array<Items>>(MAIN_URL+URL);
   }
+
+  save(items:Items):Observable<boolean>{
+    return this.http.post<boolean>(MAIN_URL+URL,items);
+  }
+
+  delete(id:number):Observable<boolean>{
+    return this.http.delete<boolean>(MAIN_URL+URL+"/"+id);
+  }
+
+  getItem(id:number):Observable<Items>{
+    return this.http.get<Items>(MAIN_URL+URL+"/"+id);
+  }
 }

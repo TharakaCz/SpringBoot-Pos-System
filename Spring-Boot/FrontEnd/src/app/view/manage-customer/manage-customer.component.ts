@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {Customer} from "../../dto/customer";
 import {CustomerService} from "../../service/customer.service";
+import {AlertService} from "ngx-alerts";
+import {NgForm} from "@angular/forms";
 
 @Component({
   selector: 'app-manage-customer',
@@ -10,8 +12,10 @@ import {CustomerService} from "../../service/customer.service";
 export class ManageCustomerComponent implements OnInit {
 
   customer:Array<Customer>=[];
+  choosedCustomer:Customer = new Customer();
+  @ViewChild("frmCustomers") frmCustomers:NgForm;
 
-  constructor(private customerService:CustomerService) { }
+  constructor(private customerService:CustomerService,private alertService:AlertService) { }
 
   ngOnInit() {
     this.loardAllCustomers();
@@ -25,6 +29,33 @@ export class ManageCustomerComponent implements OnInit {
     )
 
 
+  }
+
+
+  saveCustomer():void{
+    this.customerService.save(this.choosedCustomer).subscribe(
+      (result)=>{
+        if (result){
+          this.alertService.success("Customer Saved Succsessfully");
+          this.loardAllCustomers();
+        } else {
+          this.alertService.danger("Customer Saved Faild");
+        }
+      }
+    )
+  }
+
+  deleteCustomer(customer:Customer):void{
+    this.customerService.delete(customer.id).subscribe(
+      (result)=>{
+        if (result){
+          this.alertService.danger("Customer Deleted Succsessfuly");
+          this.loardAllCustomers();
+        } else {
+          this.alertService.warning("Customer Deleted Faild");
+        }
+      }
+    )
   }
 
 }

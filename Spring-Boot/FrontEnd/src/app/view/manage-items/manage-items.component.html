@@ -6,6 +6,7 @@
     <div class="row">
       <div class="col-sm">
 
+        <ngx-alerts></ngx-alerts>
 
         <div class="card border-secondary mb-3 col-6 animated fadeInLeft" style="max-width: 40rem;">
           <div class="card-header bg-success" style="text-align: center;font-weight: bold;color: white;font-size: 20px;">Items Form</div>
@@ -13,25 +14,26 @@
           <div class="card-body">
 
 
-            <form>
+            <form ngForm="frmItems" (ngSubmit)="saveItems()">
+
                 <div class="form-group">
-                  <label for="iname">Item Name</label>
-                  <input type="text" class="form-control" id="iname" #iname placeholder="Item Name">
+                  <label>Item Name</label>
+                  <input type="text" class="form-control" name="txtName" [(ngModel)]="choosedItems.iName" placeholder="Item Name">
                 </div>
 
                 <div class="form-group">
-                  <label for="iDiscription">Item Discription</label>
-                  <textarea type="text" class="form-control" id="iDiscription" #iDiscription placeholder="Item Discription"></textarea>
+                  <label>Item Discription</label>
+                  <input type="text" class="form-control" name="txtDiscription" [(ngModel)]="choosedItems.iDiscription" placeholder="Item Discription">
                 </div>
 
               <div class="form-group">
-                <label for="qty">Item Qty</label>
-                <input type="text" class="form-control" id="qty" #qty placeholder="Item Qty">
+                <label>Item Qty</label>
+                <input type="text" class="form-control" name="txtQty" [(ngModel)]="choosedItems.qty" placeholder="Item Qty">
               </div>
 
               <div class="form-group">
-                <label for="unitPrice">Item UnitPrice</label>
-                <input type="text" class="form-control" id="unitPrice" #unitPrice placeholder="Item unitPrice">
+                <label>Item UnitPrice</label>
+                <input type="text" class="form-control" name="txtUnitPrice" [(ngModel)]="choosedItems.unitPrice" placeholder="Item unitPrice">
               </div>
 
                 <button type="submit" class="btn btn-primary">Save</button>
@@ -48,6 +50,13 @@
       <!--One of three columns-->
       <!--</div>-->
       <div class="col-6">
+        <div class="input-group mb-3 animated fadeInUp">
+          <input type="text" class="form-control" name="txtSearch" placeholder="Search Items">
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary fa fa-search" type="button"></button>
+          </div>
+        </div>
+        <br>
         <table class="table table-bordered animated fadeInRight table-bordered" id="tblItems">
           <thead class="black white-text">
           <tr>
@@ -66,7 +75,7 @@
             <td>{{i.iDiscription}}</td>
             <td>{{i.qty}}</td>
             <td>{{i.unitPrice}}</td>
-            <td><i class="fa fa-trash fa-2x"></i></td>
+            <td><i class="fa fa-trash fa-2x" (click)="deleteItems()"></i></td>
           </tr>
           </tbody>
         </table>

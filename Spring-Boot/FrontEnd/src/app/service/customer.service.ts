@@ -16,4 +16,15 @@ export class CustomerService {
     return this.http.get<Array<Customer>>(MAIN_URL+URL);
   }
 
+  save(cucstomer:Customer):Observable<boolean>{
+    return this.http.post<boolean>(MAIN_URL+URL,cucstomer);
+  }
+
+  delete(code:number):Observable<boolean>{
+    return this.http.delete<boolean>(MAIN_URL+URL+"/"+code);
+  }
+
+  getCustomer(code:number):Observable<Customer>{
+    return this.http.get<Customer>(MAIN_URL+URL+"/"+code);
+  }
 }
